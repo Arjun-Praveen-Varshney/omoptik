@@ -1,5 +1,5 @@
 {
-  "name": "omoptik-admin-dashboard",
+  "name": "omoptik-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,12 +9,30 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.2.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/lab": "^5.0.0-alpha.85",
+    "@mui/material": "^5.8.3",
+    "apexcharts": "^3.35.3",
+    "clsx": "^1.1.1",
+    "crypto-js": "^4.1.1",
+    "feather-icons-react": "^0.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.9",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-apexcharts": "^1.4.0",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
+    "react-toastify": "^8.2.0",
+    "react-top-loading-bar": "^2.1.0",
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.7",
     "eslint": "8.18.0",
-    "eslint-config-next": "12.2.0"
+    "eslint-config-next": "12.2.0",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.4"
   }
 }
