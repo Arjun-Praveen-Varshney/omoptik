@@ -15,7 +15,7 @@ const BaseCard = (props) => {
       <Box p={2} display="flex" alignItems="center">
         <Typography variant="h4">{props.title}</Typography>
       </Box>
-      <CardContent>{props.children}</CardContent>
+      <CardContent className="overflow-auto">{props.children}</CardContent>
     </Card>
   );
 };
