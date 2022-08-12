@@ -8,7 +8,7 @@ const ViewBill = ({ bill }) => {
     let pb = document.getElementById("printBill");
     pb.classList.add("hidden");
     window.print();
-    pb.classList.remove("hidden");
+    window.onafterprint = pb.classList.remove("hidden");
   };
   return (
     <section className="text-gray-600 body-font">
