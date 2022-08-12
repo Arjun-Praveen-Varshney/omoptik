@@ -10,7 +10,7 @@ const ViewBill = ({ bill }) => {
     window.print();
     setTimeout(() => {
       pb.classList.remove("hidden");
-    }, 100);
+    }, 1000);
   };
   return (
     <section className="text-gray-600 body-font">
