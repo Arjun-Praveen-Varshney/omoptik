@@ -7,10 +7,8 @@ const ViewBill = ({ bill }) => {
   const getPdf = () => {
     let pb = document.getElementById("printBill");
     pb.classList.add("hidden");
-    setTimeout(() => {
-      window.print();
-    }, 100);
-    window.onafterprint = () => pb.classList.remove("hidden");
+    window.print();
+    pb.classList.remove("hidden");
   };
   return (
     <section className="text-gray-600 body-font">
