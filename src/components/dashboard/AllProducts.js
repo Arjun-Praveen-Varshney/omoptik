@@ -116,7 +116,7 @@ const AllProducts = ({ products, orders }) => {
                       sx={{
                         pl: "4px",
                         pr: "4px",
-                        backgroundColor: "#00c292",
+                        backgroundColor: "#953553",
                         color: "#fff",
                       }}
                       size="small"
@@ -133,7 +133,7 @@ const AllProducts = ({ products, orders }) => {
                         sx={{
                           pl: "4px",
                           pr: "4px",
-                          backgroundColor: "#00c292",
+                          backgroundColor: "#ff4500",
                           color: "#fff",
                         }}
                         size="small"
@@ -151,7 +151,7 @@ const AllProducts = ({ products, orders }) => {
                         sx={{
                           pl: "4px",
                           pr: "4px",
-                          backgroundColor: "#00c292",
+                          backgroundColor: "#000000",
                           color: "#fff",
                         }}
                         size="small"
@@ -169,7 +169,7 @@ const AllProducts = ({ products, orders }) => {
                         sx={{
                           pl: "4px",
                           pr: "4px",
-                          backgroundColor: "#00c292",
+                          backgroundColor: "#0000ff",
                           color: "#fff",
                         }}
                         size="small"
@@ -195,11 +195,11 @@ const AllProducts = ({ products, orders }) => {
                       sx={{
                         pl: "4px",
                         pr: "4px",
-                        backgroundColor: "#00c292",
+                        backgroundColor: "#ff0000",
                         color: "#fff",
                       }}
                       size="small"
-                      label="Update Details"
+                      label="Update Customer"
                     ></Chip>
                   </Link>
                 </Typography>

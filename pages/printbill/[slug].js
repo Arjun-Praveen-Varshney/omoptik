@@ -27,7 +27,6 @@ import { useRouter } from "next/router";
 const PrintBill = ({ product }) => {
   const [rno, setRno] = useState("");
   const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [phonetwo, setPhonetwo] = useState("");
@@ -109,7 +108,6 @@ const PrintBill = ({ product }) => {
     }
     setRno("");
     setName("");
-    setSlug("");
     setAddress("");
     setPhone("");
     setPhonetwo("");
@@ -154,12 +152,7 @@ const PrintBill = ({ product }) => {
                   label="Name"
                   variant="outlined"
                 />
-                <TextField
-                  value={product.slug}
-                  name="slug"
-                  label="Slug"
-                  variant="outlined"
-                />
+
                 <TextField
                   value={product.address}
                   name="address"

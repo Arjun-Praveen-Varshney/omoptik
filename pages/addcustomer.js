@@ -14,9 +14,6 @@ const Addproduct = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [billingamount, setBillingamount] = useState("");
-  const [advanceamount, setAdvanceamount] = useState("");
-  let [balanceamount, setBalanceamount] = useState("");
   const [rsph, setRsph] = useState("");
   const [rcyl, setRcyl] = useState("");
   const [raxis, setRaxis] = useState("");
@@ -47,12 +44,6 @@ const Addproduct = () => {
       setAddress(e.target.value);
     } else if (e.target.name == "phone") {
       setPhone(e.target.value);
-    } else if (e.target.name == "billingamount") {
-      setBillingamount(e.target.value);
-    } else if (e.target.name == "advanceamount") {
-      setAdvanceamount(e.target.value);
-    } else if (e.target.name == "balanceamount") {
-      setBalanceamount(e.target.value);
     } else if (e.target.name == "rsph") {
       setRsph(e.target.value);
     } else if (e.target.name == "rcyl") {
@@ -86,9 +77,6 @@ const Addproduct = () => {
         slug: someslug,
         address,
         phone,
-        billingamount,
-        advanceamount,
-        balanceamount,
         rsph,
         rcyl,
         raxis,
@@ -134,9 +122,6 @@ const Addproduct = () => {
     setName("");
     setAddress("");
     setPhone("");
-    setBillingamount("");
-    setAdvanceamount("");
-    setBalanceamount("");
     setRsph("");
     setRcyl("");
     setRaxis("");
@@ -194,38 +179,6 @@ const Addproduct = () => {
                   label="Address"
                   multiline
                   rows={4}
-                />
-
-                <TextField
-                  onChange={handleChange}
-                  value={someslug}
-                  name="slug"
-                  label="Slug"
-                  variant="outlined"
-                />
-
-                <TextField
-                  onChange={handleChange}
-                  value={billingamount}
-                  name="billingamount"
-                  label="Billing Amount"
-                  variant="outlined"
-                />
-
-                <TextField
-                  onChange={handleChange}
-                  value={advanceamount}
-                  name="advanceamount"
-                  label="Advance Amount"
-                  variant="outlined"
-                />
-
-                <TextField
-                  onChange={handleChange}
-                  value={(balanceamount = billingamount - advanceamount)}
-                  name="balanceamount"
-                  label="Balance Amount"
-                  variant="outlined"
                 />
 
                 <div className="w-full mx-auto overflow-auto">
