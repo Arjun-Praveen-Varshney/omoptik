@@ -2,19 +2,7 @@ import React from "react";
 import FullLayout from "../src/layouts/FullLayout";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../src/theme/theme";
-import {
-  Grid,
-  Stack,
-  TextField,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-  FormLabel,
-  FormControl,
-  Button,
-} from "@mui/material";
+import { Grid, Stack, TextField, Button } from "@mui/material";
 import BaseCard from "../src/components/baseCard/BaseCard";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -24,7 +12,6 @@ import slugify from "slugify";
 
 const Addproduct = () => {
   const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [billingamount, setBillingamount] = useState("");
@@ -56,8 +43,6 @@ const Addproduct = () => {
   const handleChange = (e) => {
     if (e.target.name == "name") {
       setName(e.target.value);
-    } else if (e.target.name == "slug") {
-      setSlug(someslug);
     } else if (e.target.name == "address") {
       setAddress(e.target.value);
     } else if (e.target.name == "phone") {
@@ -98,7 +83,7 @@ const Addproduct = () => {
     let data = [
       {
         name,
-        slug,
+        slug: someslug,
         address,
         phone,
         billingamount,
@@ -147,7 +132,6 @@ const Addproduct = () => {
       });
     }
     setName("");
-    setSlug("");
     setAddress("");
     setPhone("");
     setBillingamount("");
@@ -171,13 +155,6 @@ const Addproduct = () => {
       <Head>
         <title>Add Customer</title>
       </Head>
-      {/* <style jsx global>
-        {`
-          footer {
-            display: none;
-          }
-        `}
-      </style> */}
       <ToastContainer
         position="top-left"
         autoClose={5000}
@@ -221,7 +198,7 @@ const Addproduct = () => {
 
                 <TextField
                   onChange={handleChange}
-                  value={slug}
+                  value={someslug}
                   name="slug"
                   label="Slug"
                   variant="outlined"

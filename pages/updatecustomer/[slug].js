@@ -2,19 +2,7 @@ import React from "react";
 import FullLayout from "../../src/layouts/FullLayout";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../src/theme/theme";
-import {
-  Grid,
-  Stack,
-  TextField,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-  FormLabel,
-  FormControl,
-  Button,
-} from "@mui/material";
+import { Grid, Stack, TextField, Button } from "@mui/material";
 import BaseCard from "../../src/components/baseCard/BaseCard";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -27,7 +15,6 @@ import Head from "next/head";
 const UpdateProduct = ({ product }) => {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [billingamount, setBillingamount] = useState("");
@@ -48,8 +35,6 @@ const UpdateProduct = ({ product }) => {
   const handleChange = (e) => {
     if (e.target.name == "name") {
       setName(e.target.value);
-    } else if (e.target.name == "slug") {
-      setSlug(e.target.value);
     } else if (e.target.name == "address") {
       setAddress(e.target.value);
     } else if (e.target.name == "phone") {
@@ -91,7 +76,7 @@ const UpdateProduct = ({ product }) => {
       {
         _id: product._id,
         name,
-        slug,
+        slug: product.slug,
         address,
         phone,
         billingamount,
@@ -140,7 +125,6 @@ const UpdateProduct = ({ product }) => {
       });
     }
     setName("");
-    setSlug("");
     setAddress("");
     setPhone("");
     setBillingamount("");
@@ -211,13 +195,6 @@ const UpdateProduct = ({ product }) => {
       <Head>
         <title>Update Customer</title>
       </Head>
-      {/* <style jsx global>
-        {`
-          footer {
-            display: none;
-          }
-        `}
-      </style> */}
       <ToastContainer
         position="top-left"
         autoClose={5000}
@@ -242,8 +219,7 @@ const UpdateProduct = ({ product }) => {
                   variant="outlined"
                 />
                 <TextField
-                  onChange={handleChange}
-                  value={slug}
+                  value={product.slug}
                   name="slug"
                   label="Slug"
                   variant="outlined"
