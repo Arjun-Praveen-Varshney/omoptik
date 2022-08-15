@@ -6,7 +6,13 @@ import PropTypes from "prop-types";
 import SearchDD from "./SearchDD";
 import ProfileDD from "./ProfileDD";
 
-const Header = ({ sx, customClass, toggleMobileSidebar, position }) => {
+const Header = ({
+  sx,
+  customClass,
+  toggleMobileSidebar,
+  position,
+  products,
+}) => {
   return (
     <AppBar sx={sx} position={position} elevation={0} className={customClass}>
       <Toolbar>
@@ -27,7 +33,7 @@ const Header = ({ sx, customClass, toggleMobileSidebar, position }) => {
         {/* ------------------------------------------- */}
         {/* Search Dropdown */}
         {/* ------------------------------------------- */}
-        <SearchDD />
+        <SearchDD products={products} />
         {/* ------------ End Menu icon ------------- */}
 
         <Box flexGrow={1} />

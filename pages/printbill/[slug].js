@@ -24,7 +24,7 @@ import Product from "../../models/Product";
 import mongoose from "mongoose";
 import { useRouter } from "next/router";
 
-const PrintBill = ({ product }) => {
+const PrintBill = ({ product, products }) => {
   const [rno, setRno] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -135,7 +135,7 @@ const PrintBill = ({ product }) => {
         draggable
         pauseOnHover
       />
-      <FullLayout>
+      <FullLayout products={products}>
         <Grid container spacing={0}>
           <Grid item xs={12} lg={12}>
             <BaseCard title="Bill Generator">
@@ -231,14 +231,15 @@ const PrintBill = ({ product }) => {
 export default PrintBill;
 
 export async function getServerSideProps(context) {
-  let error = null;
   if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGO_URI);
+    mongoose.connect(process.env.MONGO_URI);
   }
   let product = await Product.findOne(context.query);
+  let products = await Product.find();
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
+      products: JSON.parse(JSON.stringify(products)),
     },
   };
 }

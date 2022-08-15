@@ -9,8 +9,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
 import slugify from "slugify";
+import Product from "../models/Product";
+import mongoose from "mongoose";
 
-const Addproduct = () => {
+const Addproduct = ({ products }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -151,7 +153,7 @@ const Addproduct = () => {
         draggable
         pauseOnHover
       />
-      <FullLayout>
+      <FullLayout products={products}>
         <Grid container spacing={0}>
           <Grid item xs={12} lg={12}>
             <BaseCard title="Add a Customer">
@@ -353,3 +355,14 @@ const Addproduct = () => {
 };
 
 export default Addproduct;
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    mongoose.connect(process.env.MONGO_URI);
+  }
+  let products = await Product.find();
+  return {
+    props: {
+      products: JSON.parse(JSON.stringify(products)),
+    },
+  };
+}

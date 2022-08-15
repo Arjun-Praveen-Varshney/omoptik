@@ -6,8 +6,10 @@ import theme from "../src/theme/theme";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import Product from "../models/Product";
+import mongoose from "mongoose";
 
-export default function Index() {
+export default function Index({ products }) {
   const router = useRouter();
   useEffect(() => {
     const myuser = JSON.parse(localStorage.getItem("myuser"));
@@ -28,7 +30,7 @@ export default function Index() {
           }
         `}
       </style> */}
-      <FullLayout>
+      <FullLayout products={products}>
         <Grid container spacing={0}>
           <Grid item xs={12} lg={12}>
             <SalesOverview />
@@ -51,15 +53,14 @@ export default function Index() {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   let error = null;
-//   if (!mongoose.connections[0].readyState) {
-//     await mongoose.connect(process.env.MONGO_URI);
-//   }
-//   let orders = await Order.find();
-//   return {
-//     props: {
-//       orders: JSON.parse(JSON.stringify(orders)),
-//     },
-//   };
-// }
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    mongoose.connect(process.env.MONGO_URI);
+  }
+  let products = await Product.find();
+  return {
+    props: {
+      products: JSON.parse(JSON.stringify(products)),
+    },
+  };
+}

@@ -3,22 +3,22 @@ import FullLayout from "../src/layouts/FullLayout";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../src/theme/theme";
 import { Grid } from "@mui/material";
-import AllProducts from "../src/components/dashboard/AllProducts";
+import SearchProduct from "../src/components/dashboard/SearchProduct";
 import mongoose from "mongoose";
 import Product from "../models/Product";
 import Order from "../models/Order";
 import Head from "next/head";
 
-const Allproducts = ({ products, orders }) => {
+const Search = ({ products, orders, product }) => {
   return (
     <ThemeProvider theme={theme}>
       <Head>
-        <title>All Customers</title>
+        <title>Search Results</title>
       </Head>
-      <FullLayout products={products}>
+      <FullLayout products={product}>
         <Grid container spacing={0}>
           <Grid item xs={12} lg={12}>
-            <AllProducts products={products} orders={orders} />
+            <SearchProduct products={products} orders={orders} />
           </Grid>
         </Grid>
       </FullLayout>
@@ -26,18 +26,18 @@ const Allproducts = ({ products, orders }) => {
   );
 };
 
-export default Allproducts;
-
+export default Search;
 export async function getServerSideProps(context) {
-  let error = null;
   if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGO_URI);
+    mongoose.connect(process.env.MONGO_URI);
   }
-  let products = await Product.find();
+  let products = await Product.find(context.query);
+  let product = await Product.find();
   let orders = await Order.find();
   return {
     props: {
       products: JSON.parse(JSON.stringify(products)),
+      product: JSON.parse(JSON.stringify(product)),
       orders: JSON.parse(JSON.stringify(orders)),
     },
   };

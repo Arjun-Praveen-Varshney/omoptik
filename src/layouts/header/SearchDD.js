@@ -3,7 +3,7 @@ import FeatherIcon from "feather-icons-react";
 import { IconButton, Input, Box, Drawer } from "@mui/material";
 import { useRouter } from "next/router";
 
-const SearchDD = () => {
+const SearchDD = ({ products }) => {
   // drawer top
   const [showDrawer2, setShowDrawer2] = useState(false);
   const [search, setsearch] = useState("");
@@ -14,12 +14,20 @@ const SearchDD = () => {
   };
 
   const handleSubmit = () => {
-    // console.log("Submit");
-    router.push(`?query=${search}`);
-    if (search === "products[0].title") {
-      console.log("Submit");
+    if (Number.parseInt(search) == search) {
+      router.push(`/search?phone=${search}`);
     } else {
-      console.log("Not Submit");
+      products.map((product) => {
+        if (
+          search.localeCompare(product.name, undefined, {
+            sensitivity: "accent",
+          }) == 0
+        ) {
+          router.push(`/search?name=${product.name}`);
+        } else {
+          router.push(`/search?name=${search}`);
+        }
+      });
     }
   };
 
@@ -74,7 +82,7 @@ const SearchDD = () => {
               }}
               onClick={handleDrawerClose2}
             >
-              <FeatherIcon icon="x-circle" />
+              <FeatherIcon icon="search" />
             </IconButton>
           </Box>
         </Box>
