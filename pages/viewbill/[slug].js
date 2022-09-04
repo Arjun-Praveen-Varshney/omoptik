@@ -15,7 +15,7 @@ const ViewBill = ({ bill }) => {
   return (
     <section className="text-gray-600 body-font">
       <Head>
-        <title>Bill</title>
+        <title>{bill.name}</title>
       </Head>
       <div className="container px-5 mx-auto">
         <img
@@ -31,6 +31,8 @@ const ViewBill = ({ bill }) => {
             10, Durga Prasad,
             <br />
             156, M.C.C.H. Society,
+            <br />
+              Shivaji Chowk,
             <br />
             Panvel-410206
             <br />
