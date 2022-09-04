@@ -38,11 +38,18 @@ const UpdateBill = ({ product, order, products }) => {
   const [advance, setAdvance] = useState("");
   let [balance, setBalance] = useState("");
   const [discount, setDiscount] = useState("");
-  const [sno, setSno] = useState("");
-  const [title, setTitle] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [price, setPrice] = useState("");
   const router = useRouter();
+  const [formValues, setFormValues] = useState([{ sno: "", title : "", quantity: "", price: ""}])
+
+    let formChange = (i, e) => {
+        let newFormValues = [...formValues];
+        newFormValues[i][e.target.name] = e.target.value;
+        setFormValues(newFormValues);
+      }
+    
+    let addFormFields = () => {
+        setFormValues([...formValues, { sno: "", title: "", quantity: "", price: "" }])
+      }
 
   const handleChange = (e) => {
     if (e.target.name == "phone") {
@@ -61,24 +68,7 @@ const UpdateBill = ({ product, order, products }) => {
       setDateofdelivery(e.target.value);
     } else if (e.target.name == "discount") {
       setDiscount(e.target.value);
-    } else if (e.target.name == "sno") {
-      setSno(e.target.value);
-    } else if (e.target.name == "title") {
-      setTitle(e.target.value);
-    } else if (e.target.name == "quantity") {
-      setQuantity(e.target.value);
-    } else if (e.target.name == "price") {
-      setPrice(e.target.value);
     }
-    // let products = {
-    //   1: {
-    //     sno,
-    //     title,
-    //     quantity,
-    //     price,
-    //   },
-    // };
-    // setProducts(products);
   };
 
   const submitForm = async (e) => {
@@ -94,14 +84,7 @@ const UpdateBill = ({ product, order, products }) => {
         phonetwo,
         dateofpurchase,
         dateofdelivery,
-        products: {
-          1: {
-            sno,
-            title,
-            quantity,
-            price,
-          },
-        },
+        products: formValues,
         discount,
         totalprice,
         advance,
@@ -147,10 +130,6 @@ const UpdateBill = ({ product, order, products }) => {
     setPhonetwo("");
     setDateofpurchase("");
     setDateofdelivery("");
-    setSno("");
-    setTitle("");
-    setQuantity("");
-    setPrice("");
     // setProducts({});
     setDiscount("");
     setTotalprice("");
@@ -289,46 +268,48 @@ const UpdateBill = ({ product, order, products }) => {
                           Price
                         </td>
                       </tr>
-                      <tr>
+{formValues.map((element, index) => (
+                      <tr key={index}>
                         <td className="px-4 py-3 font-bold text-black border-2 border-black">
                           <input
-                            onChange={handleChange}
-                            value={sno}
+                            onChange={e => formChange(index, e)}
+                            value={element.sno || ""}
                             name="sno"
                             // variant="outlined"
                           />
                         </td>
                         <td className="px-4 py-3 font-bold text-black border-2 border-black">
                           <input
-                            onChange={handleChange}
-                            value={title}
+                            onChange={e => formChange(index, e)}
+                            value={element.title || ""}
                             name="title"
                             // variant="outlined"
                           />
                         </td>
                         <td className="px-4 py-3 font-bold text-black border-2 border-black">
                           <input
-                            onChange={handleChange}
-                            value={quantity}
+                            onChange={e => formChange(index, e)}
+                            value={element.quantity || ""}
                             name="quantity"
                             // variant="outlined"
                           />
                         </td>
                         <td className="px-4 py-3 font-bold text-black border-2 border-black">
                           <input
-                            onChange={handleChange}
-                            value={price}
+                            onChange={e => formChange(index, e)}
+                            value={element.price || ""}
                             name="price"
                             // variant="outlined"
                           />
                         </td>
                       </tr>
+))}
                       <tr>
                         <td
                           className="px-4 py-3 font-bold text-lg text-black border-2 border-black bg-slate-500"
                           colSpan={4}
                         >
-                          <button className="w-full">Add New Product</button>
+                          <button className="w-full" onClick={() => addFormFields()}>Add New Product</button>
                         </td>
                       </tr>
                     </tbody>
