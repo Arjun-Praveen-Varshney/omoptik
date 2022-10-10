@@ -17,6 +17,7 @@ const ProductSchema = new mongoose.Schema(
     lva: { type: String, default: "" },
     ladd: { type: String, default: "" },
     comments: { type: String, default: "" },
+    prescribedby: { type: String, default: "" },
   },
   { timestamps: true }
 );
