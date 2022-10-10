@@ -23,6 +23,7 @@ const Slug = ({ product, products }) => {
   const [lva, setLva] = useState("");
   const [ladd, setLadd] = useState("");
   const [comments, setComments] = useState("");
+  const [prescribedby, setprescribedby] = useState("");
 
   const handleChange = (e) => {
     if (e.target.name == "rsph") {
@@ -47,6 +48,8 @@ const Slug = ({ product, products }) => {
       setLadd(e.target.value);
     } else if (e.target.name == "comments") {
       setComments(e.target.value);
+    } else if (e.target.name == "prescribedby") {
+      setprescribedby(e.target.value);
     }
   };
 
@@ -66,6 +69,7 @@ const Slug = ({ product, products }) => {
         lva,
         ladd,
         comments,
+        prescribedby,
       },
     ];
     let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updatecustomer`, {
@@ -108,6 +112,7 @@ const Slug = ({ product, products }) => {
     setLva("");
     setLadd("");
     setComments("");
+    setprescribedby("");
   };
   return (
     <ThemeProvider theme={theme}>
@@ -281,6 +286,22 @@ const Slug = ({ product, products }) => {
                             onChange={handleChange}
                             value={comments}
                             name="comments"
+                            // variant="outlined"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-3 font-bold text-lg text-black border-2 border-black">
+                          Prescribed by
+                        </td>
+                        <td
+                          className="px-4 py-3 text-black border-2 border-black"
+                          colSpan="8"
+                        >
+                          <input
+                            onChange={handleChange}
+                            value={prescribedby}
+                            name="prescribedby"
                             // variant="outlined"
                           />
                         </td>
