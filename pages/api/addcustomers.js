@@ -21,6 +21,7 @@ const handler = async (req, res) => {
         lva: req.body[i].lva,
         ladd: req.body[i].ladd,
         comments: req.body[i].comments,
+        prescribedby: req.body[i].prescribedby,
       });
       await p.save();
     }
